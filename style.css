@@ -1,0 +1,143 @@
+:root {
+  --base-color: #C0713F;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+body .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+body .navbar {
+  padding-top: 20px;
+  padding-right: 50px;
+  font-size: 13px;
+}
+body .navbar.collapseShow {
+  background-color: var(--base-color);
+}
+body .navbar .navbar-collapse .navbar-nav .nav-link {
+  color: #fff;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+body .navbar .navbar-collapse .navbar-nav .nav-link.active {
+  color: #fff;
+}
+body .hero-banner {
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: -65px;
+}
+body .hero-banner img {
+  width: 100%;
+}
+@media screen and (max-width: 991px) {
+  body .navbar {
+    position: sticky;
+  }
+  body .navbar .navbar-toggler {
+    color: #fff;
+    border-color: #fff;
+    float: right;
+    margin-left: auto;
+  }
+}
+body .baseline {
+  position: absolute;
+  display: block;
+  width: 75px;
+  height: 3px;
+  background-color: var(--base-color);
+  margin-top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+body .main-content {
+  text-align: center;
+  justify-content: center;
+}
+body .main-content .container .countdown {
+  font-family: "Bebas Neue", sans-serif;
+}
+body .main-content .container .countdown .number {
+  font-size: 2em;
+  color: var(--base-color);
+}
+body .main-content .container .countdown .time {
+  font-size: 1em;
+  text-transform: uppercase;
+  margin-right: 15px;
+  letter-spacing: 4px;
+}
+body .main-content .container .soon {
+  font-size: 3.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative;
+  margin-bottom: 25px;
+}
+body .main-content .container .construction {
+  font-size: 1.6em;
+}
+body .footer {
+  margin-top: 40px;
+}
+body .footer .container .links-row {
+  text-align: center;
+}
+body .footer .container .links-row .column {
+  padding: 20px 0;
+}
+body .footer .container .links-row .column .icon {
+  color: var(--base-color);
+}
+body .footer .container .links-row .column .icon .material-symbols-outlined {
+  font-size: 40px;
+}
+body .footer .container .links-row .column .icon .collection {
+  padding: 5px 0;
+}
+body .footer .container .links-row .column .icon .collection .fa-brands {
+  font-size: 32px;
+  margin-right: 3px;
+}
+body .footer .container .links-row .column .icon .collection .fa-brands:last-of-type {
+  font-size: 27px;
+  margin-top: -2px;
+}
+body .footer .container .links-row .column .sec-name {
+  position: relative;
+  margin-bottom: 25px;
+}
+body .footer .container .links-row .column .sec-name .baseline {
+  width: 55px;
+}
+body .footer .container .links-row .column .links p {
+  margin: 0;
+}
+@media screen and (max-width: 425px) {
+  body .main-content .container .countdown .number {
+    font-size: 1.5em;
+  }
+  body .main-content .container .countdown .time {
+    font-size: 1em;
+    margin-right: 15px;
+    letter-spacing: 3px;
+  }
+  body .main-content .container .soon {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  body .main-content .container .construction {
+    font-size: 1.4em;
+  }
+}/*# sourceMappingURL=style.css.map */
