@@ -17,7 +17,7 @@
     --material-icon-xl: 45px;
     --fontawesome-xl: 35px;
     --fontawesome-md: 30px;
-    --curve-corner-sm: 8px;
+    --curve-corner-sm: 5px;
     --curve-corner-xl: 15px;
     --curve-corner-xxl: 25px;
     --curve-corner-cirle: 50%;
@@ -51,17 +51,17 @@ body {
     }
 
     .btn {
-        border-radius: 10px;
+        border-radius: var(--curve-corner-sm);
         font-size: 12px;
         padding: 10px 35px;
         transition: var(--transitioner);
-    
+
         &.btn-anim {
             outline: none;
             border: none;
             font-size: var(--view-size);
             font-weight: bold;
-    
+
             .material-symbols-outlined,
             i {
                 font-size: inherit;
@@ -71,16 +71,16 @@ body {
                 opacity: 0;
                 width: 0;
             }
-    
+
             &.black {
                 background: black;
             }
-    
+
             &:hover {
                 transition: var(--transitioner);
                 padding-left: 25px;
                 padding-right: 25px;
-    
+
                 .material-symbols-outlined,
                 i {
                     transition: var(--transitioner);

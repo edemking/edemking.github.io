@@ -17,7 +17,7 @@
   --material-icon-xl: 45px;
   --fontawesome-xl: 35px;
   --fontawesome-md: 30px;
-  --curve-corner-sm: 8px;
+  --curve-corner-sm: 5px;
   --curve-corner-xl: 15px;
   --curve-corner-xxl: 25px;
   --curve-corner-cirle: 50%;
@@ -41,7 +41,7 @@ body .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 body .btn {
-  border-radius: 10px;
+  border-radius: var(--curve-corner-sm);
   font-size: 12px;
   padding: 10px 35px;
   transition: var(--transitioner);
