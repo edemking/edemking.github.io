@@ -7,7 +7,20 @@
   --base-color-3: #FF70F9;
   --black-color: #000;
   --white-color: #fff;
-  --lg-size: 13px;
+  --view-size: 13px;
+  --view-size-xxl: 20px;
+  --view-size-xxxl: 30px;
+  --view-size-xl: 16px;
+  --view-size-sm: 11px;
+  --view-size-xs: 8px;
+  --transitioner: 0.6s all ease;
+  --material-icon-xl: 45px;
+  --fontawesome-xl: 35px;
+  --fontawesome-md: 30px;
+  --curve-corner-sm: 8px;
+  --curve-corner-xl: 15px;
+  --curve-corner-xxl: 25px;
+  --curve-corner-cirle: 50%;
 }
 
 * {
@@ -30,8 +43,38 @@ body .material-symbols-outlined {
 body .btn {
   border-radius: 10px;
   font-size: 12px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 10px 35px;
+  transition: var(--transitioner);
+}
+body .btn.btn-anim {
+  outline: none;
+  border: none;
+  font-size: var(--view-size);
+  font-weight: bold;
+}
+body .btn.btn-anim .material-symbols-outlined,
+body .btn.btn-anim i {
+  font-size: inherit;
+  font-weight: 600;
+  vertical-align: middle;
+  margin: 0;
+  opacity: 0;
+  width: 0;
+}
+body .btn.btn-anim.black {
+  background: black;
+}
+body .btn.btn-anim:hover {
+  transition: var(--transitioner);
+  padding-left: 25px;
+  padding-right: 25px;
+}
+body .btn.btn-anim:hover .material-symbols-outlined,
+body .btn.btn-anim:hover i {
+  transition: var(--transitioner);
+  opacity: 1;
+  margin-left: 15px;
+  width: auto;
 }
 body .upperCase {
   text-transform: uppercase;
@@ -40,7 +83,7 @@ body .lowerCase {
   text-transform: lowercase;
 }
 body .navbar {
-  font-size: var(--lg-size);
+  font-size: var(--view-size);
   background: var(--white-color);
 }
 body .navbar .navbar-collapse .navbar-nav {
@@ -254,7 +297,7 @@ body .main-content .newsletter-sec .container .content .input-group {
   padding: 0.6em 0.8em;
 }
 body .main-content .newsletter-sec .container .content .input-group .form-control {
-  font-size: var(--lg-size);
+  font-size: var(--view-size);
   border: none;
   box-shadow: none;
 }
@@ -263,10 +306,10 @@ body .main-content .newsletter-sec .container .content .input-group .form-contro
   box-shadow: none;
 }
 body .main-content .newsletter-sec .container .content .input-group .form-control::-moz-placeholder {
-  font-size: var(--lg-size);
+  font-size: var(--view-size);
 }
 body .main-content .newsletter-sec .container .content .input-group .form-control::placeholder {
-  font-size: var(--lg-size);
+  font-size: var(--view-size);
 }
 body .main-content .newsletter-sec .container .content .input-group .btn {
   background-color: var(--black-color);
