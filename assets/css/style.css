@@ -304,6 +304,9 @@ body .footer .copyright .btn-outline-secondary {
   border-color: var(--white-color);
   color: var(--white-color);
 }
+body .footer .copyright .copyright-content {
+  padding-top: 40px;
+}
 @media screen and (max-width: 991px) {
   body .navbar {
     position: sticky;
