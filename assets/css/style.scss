@@ -121,6 +121,14 @@ body {
         text-transform: lowercase;
     }
 
+    .base-color {
+        color: var(--base-color1);
+    }
+
+    .base-bg {
+        background-color: var(--base-color1);
+    }
+
     .navbar {
         font-size: var(--view-size);
         background: var(--white-color);
@@ -586,6 +594,141 @@ body {
 
                     .cta {}
                 }
+            }
+        }
+
+        .diba-pay-banner-sec {
+            padding: 100px 0;
+            padding-top: 200px;
+            background: var(--white-color);
+
+            .content {
+                padding-right: 5%;
+
+                .title * {
+                    line-height: 1.4em;
+                }
+
+                .desc {
+                    padding-right: 10%;
+                }
+
+                .cta {
+                    .btn {
+                        padding: 10px 50px;
+                    }
+                }
+            }
+
+        }
+
+        .diba-pay-connection-sec {
+            padding: 100px 0;
+        }
+
+        .diba-pay-api-sec {
+            padding-bottom: 100px;
+
+            .left-sec {
+                width: 100%;
+                height: 400px;
+                background-color: var(--base-color-light);
+                border-radius: var(--curve-corner-sm);
+            }
+
+            .right-sec {
+                padding: 20% 10% 10% 0;
+            }
+        }
+
+        .diba-pay-steps-sec {
+            padding: 100px 0;
+            background-color: var(--base-color-light);
+
+            .steps {
+                margin-bottom: 40px;
+            }
+
+            .qr-code-sec {
+                .qr-code-box {
+                    background-color: var(--white-color);
+                    padding: 15px;
+                    border-radius: var(--curve-corner-sm);
+
+                    .qr-desc {
+                        margin-top: auto;
+                        margin-bottom: auto;
+
+                        * {
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+        }
+
+        .diba-newsletter-sec {
+            padding: 100px 0;
+
+            .content-box {
+                background: var(--base-gradient);
+                color: var(--white-color);
+                text-align: center;
+                padding: 60px;
+                border-radius: var(--curve-corner-xl);
+
+                .content {
+
+                    .title {
+                        margin-bottom: 40px;
+                    }
+
+                    .desc {
+                        margin-bottom: 30px;
+                        padding-left: 30%;
+                        padding-right: 30%;
+
+                    }
+
+
+                    .input-group {
+                        background-color: var(--white-color);
+                        border-radius: 10px;
+                        padding: 0.6em 0.8em;
+                        width: 80%;
+                        margin: auto;
+
+                        .form-control {
+                            font-size: var(--view-size);
+                            border: none;
+                            box-shadow: none;
+
+                            &:focus {
+                                border: none;
+                                box-shadow: none;
+                            }
+
+                            &::placeholder {
+                                font-size: var(--view-size);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .diba-pay-transactions-sec {
+            padding: 100px 0;
+
+            .left-sec {
+                padding: 20% 15% 10% 0;
+            }
+
+            .right-sec {
+                width: 100%;
+                height: 400px;
+                background-color: var(--base-color-light);
+                border-radius: var(--curve-corner-sm);
             }
         }
     }
