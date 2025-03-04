@@ -6,11 +6,9 @@ import Link from 'next/link'
 // import { Rubik } from 'next/font/google'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
-import localFont from 'next/font/local'
 
-const sfProDisplay = localFont({ src: '../../app/fonts/SFPRODISPLAYREGULAR.otf' })
 
-const NavbarNav = () => {
+const NavbarNav = ({ parsedClass }: { parsedClass: string }) => {
 
   const activeLink = usePathname()
 
@@ -48,13 +46,13 @@ const NavbarNav = () => {
                       </Link>
                       <div className={`font-sans bg-white p-1 flex flex-row items-center rounded-full gap-2`}>
                         <Link href={'/'} className={`${linkStyle} ${activeLink === '/' ? 'bg-black text-white' : 'text-black'}`}>
-                          <p className={`${paragraphStyle} ${sfProDisplay.className}`}>My Profile</p>
+                          <p className={`${paragraphStyle} ${parsedClass}`}>My Profile</p>
                         </Link>
                         <Link href={'/about'} className={`${linkStyle} ${activeLink === '/about' ? 'bg-black text-white' : 'text-black'}`}>
-                          <p className={`${paragraphStyle} ${sfProDisplay.className}`}>About Me</p>
+                          <p className={`${paragraphStyle} ${parsedClass}`}>About Me</p>
                         </Link>
                         <Link href={'/projects'} className={`${linkStyle} ${activeLink === '/projects' ? 'bg-black text-white' : 'text-black'}`}>
-                          <p className={`${paragraphStyle} ${sfProDisplay.className}`}>Projects</p>
+                          <p className={`${paragraphStyle} ${parsedClass}`}>Projects</p>
                         </Link>
                       </div>
                     </div>

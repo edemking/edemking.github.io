@@ -4,6 +4,12 @@ import "./globals.css";
 import localFont from 'next/font/local'
 
 const suisseIntl = localFont({ src: './fonts/Suisse-Intl-normal-300-100.otf' })
+const sfProDisplay = localFont(
+  {
+    src: './fonts/SFPRODISPLAYREGULAR.otf',
+    variable: '--sf-pro-display-regular'
+  }
+)
 
 export const metadata: Metadata = {
   title: "Devedem",
@@ -15,12 +21,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const myFont = `${sfProDisplay.variable}`
   return (
     <html lang="en">
       <body
         className={`${suisseIntl.className} antialiased`}
       >
-        <NavbarNav />
+        <NavbarNav parsedClass={myFont} />
         {children}
       </body>
     </html>
