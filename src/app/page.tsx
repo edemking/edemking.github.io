@@ -3,7 +3,7 @@ import localFont from 'next/font/local'
 import LiveTime from "../components/LiveTime";
 import { TextFade } from "../components/animations/TextFade";
 import { TypingEffect } from "../components/animations/TypingEffect";
-import { BlurIn } from "@/components/animations/BlurIn";
+import { BlurIn } from "../components/animations/BlurIn";
 
 const recklessNeue = localFont({ src: './fonts/Reckless-Neue-normal-100-100.otf' })
 
@@ -56,7 +56,7 @@ export default function Home() {
                   <div className="relative h-full w-full">
                     <Image
                       className="h-auto w-full lg:w-[50vw] grayscale hover:grayscale-0 transition ease-in-out duration-1000 absolute bottom-0 z-20"
-                      src="/DAVID-EDEM-NDANU.png"
+                      src="./DAVID-EDEM-NDANU.png"
                       alt="David Edem Ndanu"
                       width={100}
                       height={100}
