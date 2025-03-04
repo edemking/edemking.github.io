@@ -17,7 +17,7 @@ export default function Home() {
         <div className="col-span-12 lg:col-span-10">
           <div className="banner pt-5 pb-0 h-screen overflow-hidden">
             <div className="grid grid-cols-12 h-full">
-              <div className="col-span-12 lg:col-span-5 relative h-full text-center lg:text-left pt-[15vh] lg:pt-[35vh]">
+              <div className="col-span-12 lg:col-span-5 relative h-full text-center lg:text-left pt-[11vh] lg:pt-[35vh]">
                 <TextFade
                   direction="up"
                   className="pt-0 pb-5 items-center space-y-0"
@@ -55,7 +55,7 @@ export default function Home() {
                 <BlurIn>
                   <div className="relative h-full w-full">
                     <Image
-                      className="h-auto w-full lg:w-[50vw] grayscale hover:grayscale-0 transition ease-in-out duration-1000 absolute bottom-0 z-20"
+                      className="h-auto w-5/6 lg:w-[50vw] grayscale hover:grayscale-0 transition ease-in-out duration-1000 absolute bottom-0 left-[50%] transform translate-x-[-50%] z-20"
                       src="./DAVID-EDEM-NDANU.png"
                       alt="David Edem Ndanu"
                       width={100}
@@ -63,7 +63,7 @@ export default function Home() {
                       unoptimized
                       priority
                     />
-                    <div className="w-[35em] h-[35em] absolute bottom-[25vh] left-[8vw] bg-slate-100 rounded-full opacity-[2%] z-10"></div>
+                    <div className="w-[20em] h-[20em] lg:w-[35em] lg:h-[35em] absolute bottom-[5vh] lg:bottom-[25vh] left-[8vw] bg-slate-100 rounded-full opacity-[2%] z-10"></div>
                   </div>
                 </BlurIn>
               </div>
