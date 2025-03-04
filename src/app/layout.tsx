@@ -6,7 +6,7 @@ import localFont from 'next/font/local'
 const suisseIntl = localFont({ src: './fonts/Suisse-Intl-normal-300-100.otf' })
 const sfProDisplay = localFont(
   {
-    src: './fonts/SFPRODISPLAYREGULAR.otf',
+    src: './fonts/sf/SFPRODISPLAYREGULAR.otf',
     variable: '--sf-pro-display-regular'
   }
 )
