@@ -69,6 +69,38 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className="py-[6em]">
+            <div className="grid grid-cols-12">
+              <div className="col-span-12 lg:col-span-6">
+                    
+              </div>
+              <div className="col-span-12 lg:col-span-6 h-full flex items-center py-5">
+                <TextFade
+                  direction="up"
+                  className="pt-0 pb-5 items-center space-y-0"
+                >
+                  <h2 className={headerStyle}>
+                    I am a Ghanaian
+                  </h2>
+                  <h2 className={headerStyle}>
+                    Software Engineer who
+                  </h2>
+                  <h2 className={headerStyle}>
+                    crafts solutions to the
+                  </h2>
+                  <h2 className={headerStyle}>
+                    very detailed end.
+                  </h2>
+                  <div className="lg:text-left w-full uppercase mt-10">
+                    <TextFade direction="down">
+                      <p className="">Helping you build beautiful and</p>
+                      <p className="">Scalable website experiences</p>
+                    </TextFade>
+                  </div>
+                </TextFade>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="col-span-1"></div>
       </div>
