@@ -12,8 +12,8 @@ const NavbarNav = ({ parsedClass }: { parsedClass: string }) => {
 
   const activeLink = usePathname()
 
-  const linkStyle = "p-2 px-3 lg:px-5 rounded-full uppercase font-medium text-sm transition ease-in-out duration-500"
-  const paragraphStyle = "font-medium text-xs"
+  const linkStyle = "p-2 px-3 lg:px-5 rounded-full uppercase font-bold text-sm transition ease-in-out duration-500"
+  const paragraphStyle = "font-bold text-xs"
 
   return (
 

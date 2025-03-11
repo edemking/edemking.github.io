@@ -25,3 +25,9 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.my-card {
+  border-radius: 16px;
+  border-width: 2px;
+  border-color: #FFFFFF08;
+}
