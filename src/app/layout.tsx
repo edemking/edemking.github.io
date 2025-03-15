@@ -3,6 +3,11 @@ import NavbarNav from "@/components/main/NavbarNav";
 import "./globals.css";
 import localFont from 'next/font/local'
 
+import { ReactLenis } from '@/utils/lenis'
+import FooterNav from "@/components/main/FooterNav";
+
+// import MagicCursor from "@/components/main/MagicCursor";
+
 const suisseIntl = localFont({ src: './fonts/Suisse-Intl-normal-300-100.otf' })
 const sfProDisplay = localFont(
   {
@@ -10,6 +15,7 @@ const sfProDisplay = localFont(
     variable: '--sf-pro-display-regular'
   }
 )
+const figtreeBold = localFont({ src: './fonts/figtree/Figtree-Bold.ttf' })
 
 export const metadata: Metadata = {
   title: "Devedem",
@@ -23,14 +29,27 @@ export default function RootLayout({
 }>) {
 
   const myFont = `${sfProDisplay.variable}`
+  const footerFont = `${figtreeBold.className}`
+
+  const lenisOptions = {
+    lerp: 0.1,
+    duration: 2.5,
+    smoothTouch: false, //smooth scroll for touch devices
+    smooth: true,
+  };
+
   return (
     <html lang="en">
-      <body
-        className={`${suisseIntl.className} antialiased`}
-      >
-        <NavbarNav parsedClass={myFont} />
-        {children}
-      </body>
+      <ReactLenis root options={lenisOptions}>
+        {/* <MagicCursor /> */}
+        <body
+          className={`${suisseIntl.className} antialiased`}
+        >
+          <NavbarNav parsedClass={myFont} />
+          {children}
+          <FooterNav parsedClass={footerFont} />
+        </body>
+      </ReactLenis>
     </html>
   );
 }

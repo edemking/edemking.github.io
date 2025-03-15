@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import localFont from 'next/font/local'
 import LiveTime from "../components/LiveTime";
@@ -5,10 +7,22 @@ import { TextFade } from "../components/animations/TextFade";
 import { BlurIn } from "../components/animations/BlurIn";
 import { PopIn } from "../components/animations/PopIn";
 import { TextGradient } from "../components/animations/TextGradient";
+import { motion, useInView, AnimatePresence, animate, useMotionValue } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import Marquee from "@/components/animations/Marquee";
+import BlockSectionText from "@/components/main/BlockSectionText";
+import ProjectPreviewCard from "@/components/main/ProjectPreviewCard";
+import useMeasure from "react-use-measure";
+
 
 const recklessNeue = localFont({ src: './fonts/Reckless-Neue-normal-100-100.otf' })
+const figtreeRegular = localFont({ src: './fonts/figtree/Figtree-Regular.ttf' })
+const figtreeBoldItalic = localFont({ src: './fonts/figtree/Figtree-BoldItalic.ttf' })
 
 export default function Home() {
+
+  // const { scrollYProgress } = useScroll();
+  // const x = useTransform(scrollYProgress, [0, 1], [0, -600]);
 
   const headerStyle = `${recklessNeue.className} text-5xl lg:text-7xl text-wrap`
 
@@ -44,6 +58,78 @@ export default function Home() {
       company: 'Bitsweaver Limited - Full time',
     }
   ]
+
+  const marqueeRef = useRef(null);
+  const isInView = useInView(marqueeRef, { once: true });
+
+  const projects = [
+    {
+      id: 1,
+      img: './previews/diba_foods.png',
+      title: 'Diba Foods Chocolate Website',
+      bg: '#6E5039'
+    },
+    {
+      id: 2,
+      img: './previews/governor.png',
+      title: 'Governor Elias Okorno Portfolio',
+      bg: '#242A28'
+    },
+    {
+      id: 3,
+      img: './previews/ulani.png',
+      title: 'Ulani Art Group Website',
+      bg: '#262526'
+    },
+    {
+      id: 4,
+      img: './previews/indigin.png',
+      title: 'Indigin Group Website',
+      bg: '#113056'
+    },
+  ]
+
+  const FAST_SPEED = 10;
+  const SLOW_SPEED = 45;
+
+  const [duration, setDuration] = useState(FAST_SPEED);
+
+  const [ref, { width }] = useMeasure();
+
+  const xTranslation = useMotionValue(0);
+
+  const [mustFinish, setMustFinish] = useState(false);
+  const [rerender, setRerender] = useState(false);
+
+  useEffect(() => {
+    let controls;
+    const finalPosition = -width / 2 - 8;
+
+    console.log(width)
+
+    if (mustFinish) {
+      controls = animate(xTranslation, [xTranslation.get(), finalPosition], {
+        ease: 'linear',
+        duration: duration * (1 - xTranslation.get() / finalPosition),
+        onComplete: () => {
+          setMustFinish(false);
+          setRerender(!rerender);
+        }
+      });
+    } else {
+      controls = animate(xTranslation, [0, finalPosition], {
+        ease: 'linear',
+        duration: duration,
+        repeat: Infinity,
+        repeatType: 'loop',
+        repeatDelay: 0
+      });
+
+    }
+
+    return controls.stop;
+  }, [xTranslation, width, duration, rerender, mustFinish]);
+
   return (
     <>
       <div className="grid grid-cols-12">
@@ -128,15 +214,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="py-[8em]">
-            <div className="grid grid-cols-12 gap-5">
-              <div className="col-span-12 lg:col-span-6 group/samples grayscale hover:grayscale-0">
+          <div className="pt-[4em] lg:pt-[8em] pb-[4em] px-[1em] lg:px-0">
+            <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-5">
+              <div className="col-span-12 lg:col-span-6 group/samples lg:grayscale hover:grayscale-0">
                 <div className="py-3 grid grid-cols-12 gap-3">
-                  <div className="col-span-7">
+                  <div className="col-span-12 lg:col-span-7">
                     <div className="grid grid-cols-12 gap-3">
                       <PopIn className="col-span-4 my-card p-4 w-full bg-[#222222] flex justify-center">
                         <Image
-                          className="transition ease-in-out duration-700 h-[5em] w-auto"
+                          className="transition ease-in-out duration-700 h-[2em] lg:h-[5em] w-auto"
                           src="./ulani.png"
                           alt="Ulani Logo"
                           width={100}
@@ -147,7 +233,7 @@ export default function Home() {
                       </PopIn>
                       <PopIn className="col-span-4 my-card p-4 w-full bg-[#222222] flex justify-center">
                         <Image
-                          className="transition ease-in-out duration-700 h-[5em] w-auto"
+                          className="transition ease-in-out duration-700 h-[2em] lg:h-[5em] w-auto"
                           src="./indigin.png"
                           alt="Indigin Group Logo"
                           width={100}
@@ -158,7 +244,7 @@ export default function Home() {
                       </PopIn>
                       <PopIn className="col-span-4 my-card p-4 w-full bg-[#222222] flex justify-center">
                         <Image
-                          className="transition ease-in-out duration-700 h-[5em] w-auto"
+                          className="transition ease-in-out duration-700 h-[2em] lg:h-[5em] w-auto"
                           src="./dwellys.png"
                           alt="Dwellys Logo"
                           width={100}
@@ -198,7 +284,7 @@ export default function Home() {
                           />
                         </div>
                       </PopIn>
-                      <PopIn className="group/item col-span-8 h-[18em] overflow-hidden my-card px-10 w-full bg-[#222222] flex flex-col justify-center gap-1">
+                      <PopIn className="group/item col-span-12 lg:col-span-8 h-auto lg:h-[18em] overflow-hidden my-card px-10 w-full bg-[#222222] flex flex-col justify-center gap-1">
                         <Image
                           className="transition ease-in-out duration-300 w-full group-hover/item:-translate-y-5"
                           src="./indigin-website-snippet1.png"
@@ -227,7 +313,7 @@ export default function Home() {
                           priority
                         />
                       </PopIn>
-                      <PopIn className="cursor-pointer col-span-4 my-card p-6 w-full bg-[#222222] flex flex-col justify-center items-center">
+                      <PopIn className="cursor-pointer col-span-12 lg:col-span-4 my-card p-6 w-full bg-[#222222] flex flex-col justify-center items-center">
                         <p className="uppercase text-sm text-[#FFFFFF8C] text-center">
                           <span>Full Projects Below</span>
                           <svg className="animate-bounce mt-3 mx-auto" width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -244,7 +330,7 @@ export default function Home() {
                       </PopIn>
                     </div>
                   </div>
-                  <div className="col-span-5">
+                  <div className="col-span-12 lg:col-span-5">
                     <div className="grid gap-3">
                       <PopIn className="my-card w-full h-[14em] overflow-hidden bg-[#222222]">
                         <Image
@@ -296,30 +382,48 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-12 lg:col-span-6 h-full flex items-center py-5 pl-5">
-                <TextFade
-                  direction="up"
-                  className="pt-0 pb-5 items-center space-y-0"
-                >
-                  <h2 className={headerStyle}>
-                    I am a Ghanaian
-                  </h2>
-                  <h2 className={headerStyle}>
-                    Software Engineer who
-                  </h2>
-                  <h2 className={headerStyle}>
-                    crafts solutions to the
-                  </h2>
-                  <h2 className={headerStyle}>
-                    very detailed end.
-                  </h2>
-                  <div className="lg:text-left w-full uppercase mt-10">
-                    <TextFade direction="down">
-                      <p className="">Helping you build beautiful and</p>
-                      <p className="">Scalable website experiences</p>
-                    </TextFade>
-                  </div>
-                </TextFade>
+              <div className="col-span-12 lg:col-span-6">
+                <div className="hidden lg:flex h-full items-center py-5 pl-5">
+                  <TextFade
+                    direction="up"
+                    className="pt-0 pb-5 items-center space-y-0"
+                  >
+                    <h2 className={headerStyle}>
+                      I am a Ghanaian
+                    </h2>
+                    <h2 className={headerStyle}>
+                      Software Engineer who
+                    </h2>
+                    <h2 className={headerStyle}>
+                      crafts solutions to the
+                    </h2>
+                    <h2 className={headerStyle}>
+                      very detailed end.
+                    </h2>
+                    <div className="lg:text-left w-full uppercase mt-10">
+                      <TextFade direction="down">
+                        <p className="">Helping you build beautiful and</p>
+                        <p className="">Scalable website experiences</p>
+                      </TextFade>
+                    </div>
+                  </TextFade>
+                </div>
+                <div className="flex lg:hidden h-full items-center py-5 pl-5">
+                  <TextFade
+                    direction="up"
+                    className="pt-0 pb-5 items-center space-y-0"
+                  >
+                    <h2 className={headerStyle}>
+                      I am a Ghanaian Software Engineer who crafts solutions to the very detailed end.
+                    </h2>
+                    <div className="lg:text-left w-full uppercase mt-10">
+                      <TextFade direction="down">
+                        <p className="">Helping you build beautiful and</p>
+                        <p className="">Scalable website experiences</p>
+                      </TextFade>
+                    </div>
+                  </TextFade>
+                </div>
               </div>
             </div>
             <div className="pt-[8em] w-full"></div>
@@ -328,8 +432,8 @@ export default function Home() {
             </div>
             <div className="pt-[1em] w-full"></div>
             <div className="grid grid-cols-12 gap-5 text-xl mt-5">
-              <div className="col-span-8 grid grid-cols-12 gap-5">
-                <BlurIn className="col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48]">
+              <div className="col-span-12 lg:col-span-8 grid grid-cols-12 gap-5">
+                <BlurIn className="col-span-12 lg:col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48]">
                   <p>I&apos;m a <TextGradient content={'selectively skilled'} className={''} /> software engineer with strong focus on crafting digital solutions and seamless user experiences</p>
                   <div className="py-3"></div>
                   <button className="my-card py-1 px-4 flex space-x-2 items-center rounded-full bg-[#3f3f3fb9] text-base">
@@ -339,7 +443,7 @@ export default function Home() {
                     <span>Resume</span>
                   </button>
                 </BlurIn>
-                <BlurIn className="col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48]">
+                <BlurIn className="col-span-12 lg:col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48]">
                   <p className="uppercase"><TextGradient content={'Education'} className={''} /></p>
                   <div className="py-3"></div>
                   <div className="grid grid-cols-12 gap-3">
@@ -353,13 +457,17 @@ export default function Home() {
                     </div>
                   </div>
                 </BlurIn>
-                <BlurIn className="col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48]">
+                <BlurIn className="col-span-12 lg:col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48]">
                   <p className="uppercase"><TextGradient content={'My playlist'} className={''} /></p>
                   <div className="py-2"></div>
-                  <iframe style={{ borderRadius: '12px', marginBottom: '8px' }} src="https://open.spotify.com/embed/track/2twcZTB1udOEzDCPpTiOju?utm_source=generator" width="100%" height="80" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                  <iframe style={{ borderRadius: '12px' }} src="https://open.spotify.com/embed/track/6dSUujR460zx2N7868TuBI?utm_source=generator" width="100%" height="80" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                  <BlurIn>
+                    <iframe style={{ borderRadius: '12px', marginBottom: '8px' }} src="https://open.spotify.com/embed/track/2twcZTB1udOEzDCPpTiOju?utm_source=generator" width="100%" height="80" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                  </BlurIn>
+                  <BlurIn>
+                    <iframe style={{ borderRadius: '12px' }} src="https://open.spotify.com/embed/track/6dSUujR460zx2N7868TuBI?utm_source=generator" width="100%" height="80" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                  </BlurIn>
                 </BlurIn>
-                <BlurIn className="col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48] flex flex-col justify-between">
+                <BlurIn className="col-span-12 lg:col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48] flex flex-col justify-between">
                   <p className="uppercase"><TextGradient content={'motivation'} className={''} /></p>
                   <div className="">
                     <p className="text-white mb-4 font-semibold">Don&apos;t wait for things to happen, make them happen!</p>
@@ -379,10 +487,10 @@ export default function Home() {
                   </div>
                 </BlurIn>
               </div>
-              <BlurIn className="col-span-4 relative my-card bg-[#3f3f3f48] p-5 px-6">
+              <BlurIn className="col-span-12 lg:col-span-4 relative my-card bg-[#3f3f3f48] p-5 px-6">
                 <p className="uppercase"><TextGradient content={'Experience'} className={''} /></p>
                 <div className="py-1"></div>
-                <div className="h-[19em] overflow-auto">
+                <div className="lg:h-[19em] overflow-auto">
                   {
                     experience.map((exp, index) => (
                       <BlurIn key={index}>
@@ -399,13 +507,104 @@ export default function Home() {
                     ))
                   }
                 </div>
-
               </BlurIn>
             </div>
           </div>
         </div>
         <div className="col-span-1"></div>
-      </div>
+        <div className="col-span-12"
+          ref={marqueeRef}>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, x: 400 }}
+              animate={isInView ? { x: 0, opacity: 1 } : {}}
+              transition={{ ease: 'easeInOut', duration: .8 }}
+              key={'marquee1'}>
+              <div className="relative w-screen h-[10em] lg:h-[20em] overflow-hidden mt-8">
+                <Marquee initialValue={0} directionValue={-2000} durationVal={30}>
+                  <BlockSectionText className="">
+                    <h2 style={{}} className={`${figtreeRegular.className} uppercase text-[12vw] flex flex-row gap-10 items-center`}>
+                      Select
+                      <span className={`${figtreeBoldItalic.className}`}>Work</span>
+                      <svg width="141" height="176" viewBox="0 0 141 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M125.76 125.832L114.111 124.199L112.043 135.779L101.468 130.626L95.9224 141L87.4577 132.832L78.9777 140.984L73.4515 130.6L62.8673 135.733L60.8204 124.149L49.1681 125.76L50.801 114.111L39.2211 112.043L44.3739 101.468L34 95.9224L42.1683 87.4577L34.0158 78.9779L44.4001 73.4515L39.267 62.8674L50.8507 60.8204L49.2396 49.1683L60.8889 50.801L62.9575 39.2211L73.532 44.3739L79.0776 34L87.5423 42.1683L96.0223 34.0158L101.548 44.4001L112.133 39.2671L114.18 50.8508L125.832 49.2396L124.199 60.8889L135.779 62.9575L130.626 73.532L141 79.0776L132.832 87.5424L140.984 96.0223L130.6 101.548L135.733 112.133L124.149 114.18L125.76 125.832Z" fill="url(#paint0_linear_679_57)" />
+                        <defs>
+                          <linearGradient id="paint0_linear_679_57" x1="34" y1="87.5" x2="141" y2="87.5" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#7C3DFD" />
+                            <stop offset="1" stopColor="#9A06CB" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <span className="text-[#282828]">
+                        Select
+                      </span>
+                      <span className={`${figtreeBoldItalic} text-[#282828]`}>Work</span>
+                      <svg width="141" height="176" viewBox="0 0 141 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M125.76 125.832L114.111 124.199L112.043 135.779L101.468 130.626L95.9224 141L87.4577 132.832L78.9777 140.984L73.4515 130.6L62.8673 135.733L60.8204 124.149L49.1681 125.76L50.801 114.111L39.2211 112.043L44.3739 101.468L34 95.9224L42.1683 87.4577L34.0158 78.9779L44.4001 73.4515L39.267 62.8674L50.8507 60.8204L49.2396 49.1683L60.8889 50.801L62.9575 39.2211L73.532 44.3739L79.0776 34L87.5423 42.1683L96.0223 34.0158L101.548 44.4001L112.133 39.2671L114.18 50.8508L125.832 49.2396L124.199 60.8889L135.779 62.9575L130.626 73.532L141 79.0776L132.832 87.5424L140.984 96.0223L130.6 101.548L135.733 112.133L124.149 114.18L125.76 125.832Z" fill="url(#paint0_linear_679_57)" />
+                        <defs>
+                          <linearGradient id="paint0_linear_679_57" x1="34" y1="87.5" x2="141" y2="87.5" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#7C3DFD" />
+                            <stop offset="1" stopColor="#9A06CB" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      Select
+                      <span className={`${figtreeBoldItalic}`}>Work</span>
+                      <svg width="141" height="176" viewBox="0 0 141 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M125.76 125.832L114.111 124.199L112.043 135.779L101.468 130.626L95.9224 141L87.4577 132.832L78.9777 140.984L73.4515 130.6L62.8673 135.733L60.8204 124.149L49.1681 125.76L50.801 114.111L39.2211 112.043L44.3739 101.468L34 95.9224L42.1683 87.4577L34.0158 78.9779L44.4001 73.4515L39.267 62.8674L50.8507 60.8204L49.2396 49.1683L60.8889 50.801L62.9575 39.2211L73.532 44.3739L79.0776 34L87.5423 42.1683L96.0223 34.0158L101.548 44.4001L112.133 39.2671L114.18 50.8508L125.832 49.2396L124.199 60.8889L135.779 62.9575L130.626 73.532L141 79.0776L132.832 87.5424L140.984 96.0223L130.6 101.548L135.733 112.133L124.149 114.18L125.76 125.832Z" fill="url(#paint0_linear_679_57)" />
+                        <defs>
+                          <linearGradient id="paint0_linear_679_57" x1="34" y1="87.5" x2="141" y2="87.5" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#7C3DFD" />
+                            <stop offset="1" stopColor="#9A06CB" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <span className="text-[#282828]">
+                        Select
+                      </span>
+                      <span className={`${figtreeBoldItalic} text-[#282828]`}>Work</span>
+                      <svg width="141" height="176" viewBox="0 0 141 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M125.76 125.832L114.111 124.199L112.043 135.779L101.468 130.626L95.9224 141L87.4577 132.832L78.9777 140.984L73.4515 130.6L62.8673 135.733L60.8204 124.149L49.1681 125.76L50.801 114.111L39.2211 112.043L44.3739 101.468L34 95.9224L42.1683 87.4577L34.0158 78.9779L44.4001 73.4515L39.267 62.8674L50.8507 60.8204L49.2396 49.1683L60.8889 50.801L62.9575 39.2211L73.532 44.3739L79.0776 34L87.5423 42.1683L96.0223 34.0158L101.548 44.4001L112.133 39.2671L114.18 50.8508L125.832 49.2396L124.199 60.8889L135.779 62.9575L130.626 73.532L141 79.0776L132.832 87.5424L140.984 96.0223L130.6 101.548L135.733 112.133L124.149 114.18L125.76 125.832Z" fill="url(#paint0_linear_679_57)" />
+                        <defs>
+                          <linearGradient id="paint0_linear_679_57" x1="34" y1="87.5" x2="141" y2="87.5" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#7C3DFD" />
+                            <stop offset="1" stopColor="#9A06CB" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </h2>
+                  </BlockSectionText>
+                </Marquee>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 500 }}
+              animate={isInView ? { x: 0, opacity: 1 } : {}}
+              transition={{ ease: 'easeInOut', duration: .8 }}
+              key={'marquee2'}
+            >
+              <div className="relative w-screen h-[20em] overflow-x-hidden mt-8">
+                <motion.div ref={ref}
+                  onHoverStart={() => {
+                    setMustFinish(true);
+                    setDuration(SLOW_SPEED);
+                  }}
+                  onHoverEnd={() => {
+                    setMustFinish(true);
+                    setDuration(FAST_SPEED);
+                  }}
+                  style={{ x: xTranslation }} className="absolute gap-4 left-0 flex">
+                  {
+                    [...projects, ...projects].map((project, index) => (
+                      <ProjectPreviewCard key={index} details={project} />
+                    ))
+                  }
+                </motion.div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div >
+      </div >
     </>
   );
 }

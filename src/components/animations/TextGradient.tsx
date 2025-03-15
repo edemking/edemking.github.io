@@ -9,7 +9,7 @@ export const TextGradient = ({ content, className }: { content: string, classNam
         <AnimatePresence>
             <span
                 ref={ref}
-                className={className + 'text-semibold text-transparent bg-gradient-to-r from-[#7C3DFD] to-[#9A06CB] bg-clip-text'}
+                className={className + 'text-semibold text-transparent bg-gradient-to-r from-[#8b51fe] to-[#c321f9] bg-clip-text'}
             >
                 {content.split('').map((letter, index) => (
                     <motion.span

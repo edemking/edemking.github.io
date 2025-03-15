@@ -11,9 +11,11 @@
   "dependencies": {
     "@next/font": "^14.2.15",
     "framer-motion": "^12.4.10",
+    "lenis": "^1.2.3",
     "next": "15.2.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-use-measure": "^2.1.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

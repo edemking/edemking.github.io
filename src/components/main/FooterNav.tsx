@@ -1,138 +1,88 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
+import ActionButton from './ActionButton'
 import Link from 'next/link'
-import { Jost } from 'next/font/google'
-import { usePathname } from 'next/navigation'
-
-const jostFont = Jost({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-})
+import { AnimatePresence, motion, useInView } from 'framer-motion'
 
 
-const FooterNav = () => {
-  const activeLink = usePathname();
+const FooterNav = ({ parsedClass }: { parsedClass: string }) => {
+
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
     <>
-      {
-        activeLink != '/projects' && activeLink != '/gallery' ? (
-          <div className="relative max-h-max bg-[url(/img/footer.png)] bg-cover  transition ease-in-out duration-700">
-            <div className="relative grid grid-cols-12 w-full pt-[4em] pb-[2em] z-20 bg-[#027585E5] text-white">
-              <div className="col-span-1"></div>
-              <div className="col-span-12 lg:col-span-10 px-3 lg:px-0 grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-4">
-                  <div className="py-2 px-3 bg-white rounded-xl max-w-max">
-                    <Image
-                      className="h-[3em] w-auto"
-                      src="/img/logo.png"
-                      alt="ALFIELD Logo"
-                      width={100}
-                      height={100}
-                      priority
-                      unoptimized
-                    />
+      <div className="grid grid-cols-12 my-[2em]">
+        <div className="col-span-1"></div>
+        <div className="col-span-10">
+          <AnimatePresence>
+            {
+              true &&
+              <>
+                <motion.div
+                  ref={ref}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  exit={{ opacity: 0, y: 10 }} className="flex flex-col lg:flex-row gap-10 items-center my-[2em]">
+                  <div className={`${parsedClass} py-2 px-4 bg-[#333030] rounded-full max-w-max w-full grow`}>
+                    <p className='uppercase flex flex-nowrap text-center lg:text-left'>Don&apos;t Wait, Let&apos;s Create Together!</p>
                   </div>
-
-                  <p className='mt-8 mb-4'>ALFIELD is an engineering contracting company specialised in design, build, installation, upgrade, maintenance of Electro-Mechanical Systems & Networks, Labour & Equipment Hiring, and the sale of electrical materials and appliances among others.</p>
-                </div>
-                <div className="col-span-1">
-                </div>
-                <div className="col-span-12 lg:col-span-7">
-                  <div className="grid grid-cols-12">
-                    <div className="col-span-6 lg:col-span-2 xl:col-span-3 py-2">
+                  <motion.div
+                    ref={ref}
+                    initial={{ opacity: 0, 'width': '0px' }}
+                    animate={isInView ? { opacity: 1, 'width': '100%' } : {}}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className='bg-white h-[1px] my-auto'></motion.div>
+                </motion.div>
+                <motion.div
+                  ref={ref}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  exit={{ opacity: 0, y: 10 }} className={`${parsedClass} rounded-2xl bg-[#2C2C2C] py-8 px-10 flex flex-col lg:flex-row justify-between`}>
+                  <div className='flex flex-col lg:flex-row gap-2 lg:gap-4 items-center'>
+                    <ActionButton keyVal={'emailMeBtn'} link='mailto:davidedemofc@gmail.com' name='Shoot Me An Email' target='_blank' className={''} />
+                    <div className="h-full bg-white w-[1px]">
                     </div>
-                    <div className="col-span-12 lg:col-span-3 py-2">
-                      <p className="text-2xl mb-6 font-medium">Company</p>
-                      <Link href={'/'} className='mb-3 block'>Home</Link>
-                      <Link href={'/about'} className='mb-3 block'>About Us</Link>
-                      <Link href={'/services'} className='mb-3 block'>Services</Link>
-                      <Link href={'/contact'} className='mb-3 block'>Contact Us</Link>
-                    </div>
-                    {/* <div className="col-span-6 lg:col-span-4 py-2">
-                  <p className="text-2xl mb-6 font-medium">Support</p>
-                  <Link href={'/'} className='mb-3 block'>Help center</Link>
-                  <Link href={'/'} className='mb-3 block'>Terms of service</Link>
-                  <Link href={'/'} className='mb-3 block'>Legal</Link>
-                  <Link href={'/'} className='mb-3 block'>Privacy policy</Link>
-                  <Link href={'/'} className='mb-3 block'>Grievance Redress</Link>
-                </div> */}
-                    <div className="col-span-12 lg:col-span-7 xl:col-span-6 py-2">
-                      {/* <p className="text-2xl mb-6 font-medium">Stay up to date</p> */}
-                      {/* <div className="p-3 rounded-lg bg-[#ffffff39] text-white flex justify-between pr-4 sapce-x-4 w-full text-sm my-4">
-                    <input type="text" className='border-0 outline-none text-white bg-transparent placeholder-gray-200 focus:border-0 focus:outline-none w-full mr-2' placeholder='Your email address' />
-                    <div>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="22"
-                        height="22"
-                        fill="none"
-                        viewBox="0 0 18 18"
-                      >
-                        <path
-                          fill="#fff"
-                          fillRule="evenodd"
-                          d="M17.03.97a.75.75 0 0 1 .178.778l-5.25 15a.75.75 0 0 1-1.393.057l-2.883-6.487-6.487-2.883a.75.75 0 0 1 .057-1.393l15-5.25a.75.75 0 0 1 .778.178M9.145 9.916l2.022 4.55 3.54-10.112zm4.5-6.622L3.534 6.833l4.55 2.022z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div> */}
-                      <div className="flex space-x-5 mb-4">
-                        <div className=''>
-                          <Link href={'/'}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
-                              <path opacity="0.1" fillRule="evenodd" clipRule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16Z" fill="white" />
-                              <path fillRule="evenodd" clipRule="evenodd" d="M16.0009 7.4668C13.6834 7.4668 13.3925 7.47693 12.4823 7.51835C11.5739 7.55995 10.9538 7.70378 10.4112 7.9148C9.84993 8.13276 9.37384 8.42432 8.89952 8.89881C8.42485 9.37313 8.13329 9.84922 7.91462 10.4103C7.70307 10.9531 7.55906 11.5733 7.51818 12.4814C7.47746 13.3917 7.4668 13.6827 7.4668 16.0002C7.4668 18.3178 7.47711 18.6077 7.51835 19.5179C7.56013 20.4264 7.70395 21.0465 7.9148 21.5891C8.13294 22.1503 8.4245 22.6264 8.89899 23.1007C9.37313 23.5754 9.84922 23.8677 10.4101 24.0856C10.9531 24.2967 11.5733 24.4405 12.4816 24.4821C13.3918 24.5235 13.6825 24.5336 15.9999 24.5336C18.3176 24.5336 18.6075 24.5235 19.5178 24.4821C20.4262 24.4405 21.047 24.2967 21.59 24.0856C22.151 23.8677 22.6264 23.5754 23.1006 23.1007C23.5752 22.6264 23.8668 22.1503 24.0855 21.5893C24.2952 21.0465 24.4392 20.4262 24.4819 19.5181C24.5228 18.6079 24.5335 18.3178 24.5335 16.0002C24.5335 13.6827 24.5228 13.3918 24.4819 12.4816C24.4392 11.5732 24.2952 10.9531 24.0855 10.4105C23.8668 9.84922 23.5752 9.37313 23.1006 8.89881C22.6259 8.42414 22.1512 8.13258 21.5894 7.9148C21.0454 7.70378 20.425 7.55995 19.5165 7.51835C18.6063 7.47693 18.3165 7.4668 15.9983 7.4668H16.0009ZM15.2354 9.00457C15.4626 9.00421 15.7161 9.00457 16.0009 9.00457C18.2793 9.00457 18.5494 9.01274 19.4491 9.05363C20.2811 9.09168 20.7327 9.2307 21.0335 9.3475C21.4317 9.50217 21.7156 9.68706 22.0141 9.98573C22.3128 10.2844 22.4977 10.5688 22.6527 10.9671C22.7695 11.2675 22.9087 11.7191 22.9466 12.5511C22.9875 13.4507 22.9963 13.7209 22.9963 15.9982C22.9963 18.2756 22.9875 18.5458 22.9466 19.4454C22.9085 20.2774 22.7695 20.729 22.6527 21.0294C22.498 21.4276 22.3128 21.7112 22.0141 22.0097C21.7154 22.3084 21.4319 22.4932 21.0335 22.6479C20.733 22.7652 20.2811 22.9039 19.4491 22.942C18.5495 22.9828 18.2793 22.9917 16.0009 22.9917C13.7223 22.9917 13.4522 22.9828 12.5527 22.942C11.7207 22.9036 11.2691 22.7645 10.9681 22.6477C10.5699 22.4931 10.2855 22.3082 9.98679 22.0095C9.68812 21.7108 9.50323 21.4271 9.3482 21.0287C9.2314 20.7282 9.0922 20.2767 9.05433 19.4447C9.01344 18.5451 9.00527 18.2749 9.00527 15.9961C9.00527 13.7173 9.01344 13.4485 9.05433 12.549C9.09238 11.717 9.2314 11.2654 9.3482 10.9646C9.50287 10.5664 9.68812 10.2819 9.98679 9.98324C10.2855 9.68457 10.5699 9.49968 10.9681 9.34466C11.2689 9.22732 11.7207 9.08866 12.5527 9.05043C13.3399 9.01488 13.645 9.00421 15.2354 9.00243V9.00457ZM20.556 10.4215C19.9906 10.4215 19.532 10.8796 19.532 11.4451C19.532 12.0105 19.9906 12.4691 20.556 12.4691C21.1213 12.4691 21.58 12.0105 21.58 11.4451C21.58 10.8798 21.1213 10.4215 20.556 10.4215ZM16.0009 11.6179C13.5808 11.6179 11.6187 13.5801 11.6187 16.0002C11.6187 18.4203 13.5808 20.3816 16.0009 20.3816C18.4211 20.3816 20.3825 18.4203 20.3825 16.0002C20.3825 13.5801 18.4211 11.6179 16.0009 11.6179ZM16.0009 13.1557C17.5718 13.1557 18.8454 14.4292 18.8454 16.0002C18.8454 17.5711 17.5718 18.8447 16.0009 18.8447C14.4299 18.8447 13.1564 17.5711 13.1564 16.0002C13.1564 14.4292 14.4299 13.1557 16.0009 13.1557Z" fill="white" />
-                            </svg>
-                          </Link>
-                        </div>
-                        {/* <div className=''>
-                      <Link href={'/'}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
-                          <path opacity="0.1" fillRule="evenodd" clipRule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16Z" fill="white" />
-                          <path fillRule="evenodd" clipRule="evenodd" d="M24.5335 15.9883C24.5335 16.5654 24.4747 17.1417 24.3593 17.7034C24.2468 18.2518 24.0801 18.7902 23.8618 19.3049C23.6485 19.8105 23.3839 20.2977 23.0747 20.7521C22.7701 21.2036 22.4192 21.6271 22.0338 22.0133C21.6475 22.3977 21.2225 22.7476 20.7712 23.0535C20.3154 23.3605 19.8275 23.6247 19.3216 23.8391C18.8061 24.0562 18.2665 24.2227 17.7186 24.335C17.1561 24.4507 16.5777 24.5098 15.9997 24.5098C15.4214 24.5098 14.843 24.4507 14.2813 24.335C13.7326 24.2227 13.1929 24.0562 12.6779 23.8391C12.1721 23.6247 11.6837 23.3605 11.2278 23.0535C10.7766 22.7476 10.3516 22.3977 9.96611 22.0133C9.58027 21.6271 9.2294 21.2036 8.92439 20.7521C8.61687 20.2977 8.35184 19.8105 8.13768 19.3049C7.9193 18.7902 7.75224 18.2518 7.63931 17.7034C7.52515 17.1417 7.4668 16.5654 7.4668 15.9883C7.4668 15.4108 7.52511 14.8332 7.63934 14.2727C7.75227 13.7243 7.91934 13.1851 8.13771 12.6712C8.35187 12.1653 8.6169 11.6776 8.92442 11.2232C9.22943 10.7714 9.5803 10.3486 9.96614 9.96207C10.3516 9.57759 10.7766 9.22852 11.2279 8.92312C11.6837 8.61478 12.1721 8.35059 12.6779 8.13587C13.193 7.91822 13.7326 7.75139 14.2814 7.63989C14.8431 7.52506 15.4214 7.4668 15.9998 7.4668C16.5777 7.4668 17.1561 7.52506 17.7186 7.63989C18.2665 7.75142 18.8061 7.91825 19.3216 8.13587C19.8275 8.35056 20.3154 8.61478 20.7713 8.92312C21.2225 9.22852 21.6476 9.57759 22.0338 9.96207C22.4193 10.3486 22.7701 10.7714 23.0747 11.2232C23.3839 11.6776 23.6485 12.1653 23.8618 12.6712C24.0801 13.1851 24.2468 13.7243 24.3593 14.2727C24.4747 14.8332 24.5335 15.4108 24.5335 15.9883ZM12.8904 9.40618C10.8582 10.3645 9.34143 12.2343 8.86848 14.4879C9.0606 14.4895 12.0974 14.5278 15.5963 13.5995C14.335 11.3618 12.9875 9.53562 12.8904 9.40618ZM16.2001 14.7201C12.4479 15.8418 8.84724 15.7611 8.71808 15.7561C8.71597 15.8343 8.71223 15.91 8.71223 15.9883C8.71223 17.8577 9.41851 19.562 10.5794 20.8507C10.5769 20.8469 12.5712 17.3139 16.5039 16.0441C16.5989 16.0124 16.6956 15.9841 16.7914 15.9567C16.6085 15.5431 16.4089 15.1287 16.2001 14.7201ZM20.8125 10.5267C19.5295 9.39701 17.8448 8.71176 15.9997 8.71176C15.4076 8.71176 14.833 8.78333 14.2825 8.91564C14.3917 9.06212 15.7605 10.8754 17.0068 13.1605C19.7566 12.1312 20.7945 10.5533 20.8125 10.5267ZM17.2882 17.1625C17.2719 17.1679 17.2557 17.1725 17.2398 17.1783C12.9401 18.6751 11.536 21.6915 11.5208 21.7245C12.7579 22.6852 14.3097 23.2648 15.9998 23.2648C17.009 23.2648 17.9703 23.0596 18.8449 22.6881C18.737 22.0523 18.3136 19.8238 17.2882 17.1625ZM20.072 22.0232C21.7083 20.9206 22.8705 19.1697 23.1946 17.1416C23.0446 17.0934 21.0058 16.4489 18.6536 16.8254C19.6095 19.4485 19.9978 21.5847 20.072 22.0232ZM17.5678 14.2449C17.7369 14.5919 17.9007 14.9451 18.0519 15.3001C18.1057 15.4274 18.1582 15.5522 18.2095 15.677C20.7129 15.3625 23.1793 15.8917 23.2847 15.9133C23.2681 14.1883 22.6501 12.6051 21.6276 11.3656C21.6138 11.3851 20.445 13.0715 17.5678 14.2449Z" fill="white" />
-                        </svg>
+                    <div className='flex flex-col'>
+                      <Link href={'tel:+233551760788'} className='group/number'>
+                        <p className='text-base group-hover/number:text-transparent group-hover/number:bg-clip-text group-hover/number:bg-gradient-to-r from-[#7C3DFD] to-[#9A06CB]
+                transition ease-in-out duration-700'>+233 55 176 0788</p>
                       </Link>
-                    </div> */}
-                        <div className=''>
-                          <Link href={'/'}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
-                              <path opacity="0.1" fillRule="evenodd" clipRule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16Z" fill="white" />
-                              <path fillRule="evenodd" clipRule="evenodd" d="M15.5208 13.0051L15.5544 13.5587L14.9948 13.4909C12.9579 13.2311 11.1784 12.3498 9.66756 10.8696L8.92891 10.1352L8.73865 10.6776C8.33575 11.8865 8.59316 13.1633 9.43253 14.022C9.8802 14.4965 9.77948 14.5643 9.00725 14.2819C8.73865 14.1915 8.50363 14.1237 8.48124 14.1576C8.4029 14.2367 8.6715 15.2648 8.88414 15.6716C9.17513 16.2365 9.76828 16.7902 10.4174 17.1178L10.9658 17.3777L10.3167 17.389C9.68994 17.389 9.66756 17.4003 9.73471 17.6376C9.95854 18.372 10.8427 19.1516 11.8276 19.4906L12.5214 19.7278L11.9171 20.0894C11.0218 20.6091 9.96973 20.9029 8.91772 20.9255C8.41409 20.9368 8 20.982 8 21.0159C8 21.1289 9.36538 21.7616 10.16 22.0102C12.5438 22.7446 15.3753 22.4282 17.5017 21.1741C19.0126 20.2815 20.5235 18.5076 21.2286 16.7902C21.6091 15.875 21.9896 14.2028 21.9896 13.4006C21.9896 12.8808 22.0232 12.813 22.6499 12.1916C23.0192 11.83 23.3662 11.4346 23.4333 11.3216C23.5452 11.1069 23.534 11.1069 22.9633 11.299C22.012 11.638 21.8777 11.5928 22.3477 11.0843C22.6947 10.7228 23.1088 10.0674 23.1088 9.87536C23.1088 9.84146 22.9409 9.89796 22.7506 9.99964C22.5492 10.1126 22.1015 10.2821 21.7658 10.3838L21.1614 10.5759L20.613 10.203C20.3108 9.99964 19.8856 9.77367 19.6617 9.70588C19.0909 9.5477 18.218 9.57029 17.7032 9.75107C16.3042 10.2595 15.4201 11.5702 15.5208 13.0051Z" fill="white" />
-                            </svg>
-                          </Link>
-                        </div>
-                        <div className=''>
-                          <Link href={'/'}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
-                              <path opacity="0.1" fillRule="evenodd" clipRule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16Z" fill="white" />
-                              <path fillRule="evenodd" clipRule="evenodd" d="M22.6679 10.4995C23.4022 10.701 23.9805 11.2948 24.1768 12.0488C24.5335 13.4153 24.5335 16.2666 24.5335 16.2666C24.5335 16.2666 24.5335 19.1178 24.1768 20.4845C23.9805 21.2385 23.4022 21.8322 22.6679 22.0338C21.3371 22.4 16.0001 22.4 16.0001 22.4C16.0001 22.4 10.6632 22.4 9.3323 22.0338C8.59795 21.8322 8.01962 21.2385 7.82335 20.4845C7.4668 19.1178 7.4668 16.2666 7.4668 16.2666C7.4668 16.2666 7.4668 13.4153 7.82335 12.0488C8.01962 11.2948 8.59795 10.701 9.3323 10.4995C10.6632 10.1333 16.0001 10.1333 16.0001 10.1333C16.0001 10.1333 21.3371 10.1333 22.6679 10.4995ZM14.4001 13.8666V19.1999L18.6668 16.5333L14.4001 13.8666Z" fill="white" />
-                            </svg>
-                          </Link>
-                        </div>
-                      </div>
-                      <p className='text-md my-3'>Tarkwa, Ghana</p>
-                      <p className='text-md'><b>E&nbsp;</b>-&nbsp;eben.eshun@alfieldeng.com</p>
-                      <p className='text-md'><b>T&nbsp;</b>-&nbsp;+233 24 681 7020</p>
+                      {/* <Link href={'tel:+233551760788'} className='group/number absolute top-10'>
+                  <p className='text-base group-hover/number:text-transparent group-hover/number:bg-clip-text group-hover/number:bg-gradient-to-r from-[#7C3DFD] to-[#9A06CB]
+                transition ease-in-out duration-700'>+233 55 176 0788</p>
+                </Link> */}
                     </div>
                   </div>
-                </div>
-                <div className="col-span-12 my-8">
-                  <div className="h-[1.5px] bg-white w-full"></div>
-                </div>
-                <div className={`${jostFont.className} col-span-12 text-sm flex flex-col lg:flex-row text-center lg:justify-between`}>
-                  <p className='font-medium'>Designed by <Link href={'https://degovernor.com'} className='text-[#FFE32B]'>Governor</Link></p>
-                  <p className='font-medium'>Digitally Crafted by <Link href={'https://davidndanu.com'} className='text-[#FFE32B]'>Devedem</Link>&nbsp;|&nbsp;Copyright @2025 Alfield</p>
-                </div>
-              </div>
-              <div className="col-span-1"></div>
-            </div>
-          </div>
-        ) : ''
-      }
+                  <div className='bg-white h-[1px] w-1/4 my-3 mx-auto lg:hidden'></div>
+                  <div className='flex flex-col lg:flex-row gap-2 items-center'>
+                    <div className="h-full bg-white w-[1px]">
+                    </div>
+                    <div className='items-center flex flex-col lg:flex-row gap-3 lg:gap-5'>
+                      <p className='text-base text-white
+                transition ease-in-out duration-700'>
+                        Designed by&nbsp;
+                        <Link href={'https://degovernor.com'} target='_blank' className=''>
+                          <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#884dfe] to-[#c321f9]'>Governor</span>
+                        </Link>
+                      </p>
+                      <p className='text-base text-white
+                transition ease-in-out duration-700'>
+                        Developed by&nbsp;
+                        <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#884dfe] to-[#c321f9]'>Moi</span>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </>
+            }
+          </AnimatePresence>
+        </div>
+        <div className="col-span-1"></div>
+      </div>
     </>
   )
 }
