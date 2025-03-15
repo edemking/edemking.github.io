@@ -583,7 +583,7 @@ export default function Home() {
               transition={{ ease: 'easeInOut', duration: .8 }}
               key={'marquee2'}
             >
-              <div className="relative w-screen h-[20em] overflow-x-hidden mt-8">
+              <div className="relative w-screen h-[25em] overflow-x-hidden mt-8">
                 <motion.div ref={ref}
                   onHoverStart={() => {
                     setMustFinish(true);

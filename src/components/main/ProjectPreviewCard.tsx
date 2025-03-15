@@ -18,12 +18,12 @@ const ProjectPreviewCard = ({ details, className }: { details: projectObj, class
     return (
         <motion.div
             ref={ref}
-            className={`${className} w-[25em] p-6 rounded-2xl overflow-hidden group/project-card transition ease-in-out duration-700 hover:translate-y-10`}
+            className={`${className} w-[35em] p-6 rounded-2xl overflow-hidden group/project-card transition ease-in-out duration-700 hover:translate-y-10`}
             style={{ backgroundColor: details.bg }}
         >
-            <div className="w-auto h-[14em] relative z-10">
+            <div className="w-full h-auto relative z-10">
                 <Image
-                    className="object-contain relative transition ease-in-out duration-700 h-[14em] w-auto group-hover/project-card:blur-xl rounded-2xl"
+                    className="object-contain relative transition ease-in-out duration-700 h-auto w-full group-hover/project-card:blur-xl rounded-2xl"
                     src={details.img}
                     alt={details.title}
                     width={100}
