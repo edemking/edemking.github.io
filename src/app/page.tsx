@@ -17,6 +17,7 @@ import useMeasure from "react-use-measure";
 
 const recklessNeue = localFont({ src: './fonts/Reckless-Neue-normal-100-100.otf' })
 const figtreeRegular = localFont({ src: './fonts/figtree/Figtree-Regular.ttf' })
+const figtreeBold = localFont({ src: './fonts/figtree/Figtree-Bold.ttf' })
 const figtreeBoldItalic = localFont({ src: './fonts/figtree/Figtree-BoldItalic.ttf' })
 
 export default function Home() {
@@ -593,7 +594,7 @@ export default function Home() {
                     setMustFinish(true);
                     setDuration(FAST_SPEED);
                   }}
-                  style={{ x: xTranslation }} className="absolute gap-4 left-0 flex">
+                  style={{ x: xTranslation }} className={`${figtreeBold.className} absolute gap-4 left-0 flex`}>
                   {
                     [...projects, ...projects].map((project, index) => (
                       <ProjectPreviewCard key={index} details={project} />

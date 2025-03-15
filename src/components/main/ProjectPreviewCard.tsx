@@ -21,9 +21,9 @@ const ProjectPreviewCard = ({ details, className }: { details: projectObj, class
             className={`${className} w-[35em] p-6 rounded-2xl overflow-hidden group/project-card transition ease-in-out duration-700 hover:translate-y-10`}
             style={{ backgroundColor: details.bg }}
         >
-            <div className="w-full h-auto relative z-10">
+            <div className="w-full h-auto relative z-10 m-auto">
                 <Image
-                    className="object-contain relative transition ease-in-out duration-700 h-auto w-full group-hover/project-card:blur-xl rounded-2xl"
+                    className="object-contain relative transition ease-in-out duration-700 h-auto w-full group-hover/project-card:blur-xl rounded-2xl m-auto"
                     src={details.img}
                     alt={details.title}
                     width={100}
@@ -33,7 +33,7 @@ const ProjectPreviewCard = ({ details, className }: { details: projectObj, class
                 />
                 <div className="absolute top-0 left-0 opacity-0 h-full w-full group-hover/project-card:opacity-100 flex flex-col justify-center items-center text-center transition ease-in-out duration-700 z-30">
                     {/* <p className='font-bold text-xl'>Work #{details.id}</p> */}
-                    <p className='text-base font-bold text-white'>{details.title}</p>
+                    <p className='text-lg font-bold text-white'>{details.title}</p>
                 </div>
             </div>
         </motion.div>
