@@ -9,12 +9,12 @@ import FooterNav from "@/components/main/FooterNav";
 // import MagicCursor from "@/components/main/MagicCursor";
 
 const suisseIntl = localFont({ src: './fonts/Suisse-Intl-normal-300-100.otf' })
-const sfProDisplay = localFont(
-  {
-    src: './fonts/sf/SFPRODISPLAYBOLD.otf',
-    variable: '--sf-pro-display-regular'
-  }
-)
+// const sfProDisplay = localFont(
+//   {
+//     src: './fonts/sf/SFPRODISPLAYBOLD.otf',
+//     variable: '--sf-pro-display-regular'
+//   }
+// )
 const figtreeBold = localFont({ src: './fonts/figtree/Figtree-Bold.ttf' })
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const myFont = `${sfProDisplay.variable}`
+  // const myFont = `${sfProDisplay.variable}`
   const footerFont = `${figtreeBold.className}`
 
   const lenisOptions = {
@@ -45,7 +45,7 @@ export default function RootLayout({
         <body
           className={`${suisseIntl.className} antialiased`}
         >
-          <NavbarNav parsedClass={myFont} />
+          <NavbarNav parsedClass={footerFont} />
           {children}
           <FooterNav parsedClass={footerFont} />
         </body>
