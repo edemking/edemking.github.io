@@ -18,41 +18,6 @@ const Marquee = (
             durationVal?: number,
         }) => {
     const variantX = [initialValue, directionValue];
-    // const marqueeVariants = !hoverPause ? {
-    //     animate: {
-    //         x: variantX,
-    //         transition: {
-    //             x: {
-    //                 duration: 20,
-    //                 ease: "linear",
-    //                 repeat: Infinity,
-    //                 repeatType: "loop",
-    //                 delay: .5,
-    //             },
-    //         },
-    //     },
-    // } : {
-    //     rest: {
-    //         x: variantX,
-    //         transition: {
-    //             x: {
-    //                 duration: 20,
-    //                 ease: "linear",
-    //                 repeat: Infinity,
-    //                 repeatType: "loop",
-    //                 delay: .5,
-    //             },
-    //         },
-    //     },
-    //     hover: {
-    //         x: variantX,
-    //         transition: {
-    //             x: {
-    //                 duration: 0,
-    //             },
-    //         },
-    //     },
-    // }
 
     const ref = React.useRef(null);
 

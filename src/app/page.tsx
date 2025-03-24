@@ -13,6 +13,7 @@ import Marquee from "@/components/animations/Marquee";
 import BlockSectionText from "@/components/main/BlockSectionText";
 import ProjectPreviewCard from "@/components/main/ProjectPreviewCard";
 import useMeasure from "react-use-measure";
+import ActionButton from "@/components/main/ActionButton";
 
 
 const recklessNeue = localFont({ src: './fonts/Reckless-Neue-normal-100-100.otf' })
@@ -428,8 +429,8 @@ export default function Home() {
               </div>
             </div>
             <div className="pt-[8em] w-full"></div>
-            <div className="bg-[#333030] py-2 px-6 rounded-full max-w-max mb-8">
-              <p className="text-lg uppercase text-white font-extrabold">About me</p>
+            <div className="section-name-pill py-2 px-6 mb-8">
+              <p className="text-lg font-extrabold">About me</p>
             </div>
             <div className="pt-[1em] w-full"></div>
             <div className="grid grid-cols-12 gap-5 text-xl mt-5">
@@ -510,6 +511,9 @@ export default function Home() {
                 </div>
               </BlurIn>
             </div>
+            <div className="text-right w-full justify-end pt-10 flex">
+              <ActionButton keyVal={'aboutMe'} link='/about' name='More about myself' target='_top' className={'font-bold'} />
+            </div>
           </div>
         </div>
         <div className="col-span-1"></div>
@@ -539,7 +543,7 @@ export default function Home() {
                       <span className="text-[#282828]">
                         Select
                       </span>
-                      <span className={`${figtreeBoldItalic} text-[#282828]`}>Work</span>
+                      <span className={`${figtreeBoldItalic.className} text-[#282828]`}>Work</span>
                       <svg width="141" height="176" viewBox="0 0 141 176" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M125.76 125.832L114.111 124.199L112.043 135.779L101.468 130.626L95.9224 141L87.4577 132.832L78.9777 140.984L73.4515 130.6L62.8673 135.733L60.8204 124.149L49.1681 125.76L50.801 114.111L39.2211 112.043L44.3739 101.468L34 95.9224L42.1683 87.4577L34.0158 78.9779L44.4001 73.4515L39.267 62.8674L50.8507 60.8204L49.2396 49.1683L60.8889 50.801L62.9575 39.2211L73.532 44.3739L79.0776 34L87.5423 42.1683L96.0223 34.0158L101.548 44.4001L112.133 39.2671L114.18 50.8508L125.832 49.2396L124.199 60.8889L135.779 62.9575L130.626 73.532L141 79.0776L132.832 87.5424L140.984 96.0223L130.6 101.548L135.733 112.133L124.149 114.18L125.76 125.832Z" fill="url(#paint0_linear_679_57)" />
                         <defs>
@@ -550,7 +554,7 @@ export default function Home() {
                         </defs>
                       </svg>
                       Select
-                      <span className={`${figtreeBoldItalic}`}>Work</span>
+                      <span className={`${figtreeBoldItalic.className}`}>Work</span>
                       <svg width="141" height="176" viewBox="0 0 141 176" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M125.76 125.832L114.111 124.199L112.043 135.779L101.468 130.626L95.9224 141L87.4577 132.832L78.9777 140.984L73.4515 130.6L62.8673 135.733L60.8204 124.149L49.1681 125.76L50.801 114.111L39.2211 112.043L44.3739 101.468L34 95.9224L42.1683 87.4577L34.0158 78.9779L44.4001 73.4515L39.267 62.8674L50.8507 60.8204L49.2396 49.1683L60.8889 50.801L62.9575 39.2211L73.532 44.3739L79.0776 34L87.5423 42.1683L96.0223 34.0158L101.548 44.4001L112.133 39.2671L114.18 50.8508L125.832 49.2396L124.199 60.8889L135.779 62.9575L130.626 73.532L141 79.0776L132.832 87.5424L140.984 96.0223L130.6 101.548L135.733 112.133L124.149 114.18L125.76 125.832Z" fill="url(#paint0_linear_679_57)" />
                         <defs>
@@ -563,7 +567,7 @@ export default function Home() {
                       <span className="text-[#282828]">
                         Select
                       </span>
-                      <span className={`${figtreeBoldItalic} text-[#282828]`}>Work</span>
+                      <span className={`${figtreeBoldItalic.className} text-[#282828]`}>Work</span>
                       <svg width="141" height="176" viewBox="0 0 141 176" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M125.76 125.832L114.111 124.199L112.043 135.779L101.468 130.626L95.9224 141L87.4577 132.832L78.9777 140.984L73.4515 130.6L62.8673 135.733L60.8204 124.149L49.1681 125.76L50.801 114.111L39.2211 112.043L44.3739 101.468L34 95.9224L42.1683 87.4577L34.0158 78.9779L44.4001 73.4515L39.267 62.8674L50.8507 60.8204L49.2396 49.1683L60.8889 50.801L62.9575 39.2211L73.532 44.3739L79.0776 34L87.5423 42.1683L96.0223 34.0158L101.548 44.4001L112.133 39.2671L114.18 50.8508L125.832 49.2396L124.199 60.8889L135.779 62.9575L130.626 73.532L141 79.0776L132.832 87.5424L140.984 96.0223L130.6 101.548L135.733 112.133L124.149 114.18L125.76 125.832Z" fill="url(#paint0_linear_679_57)" />
                         <defs>
