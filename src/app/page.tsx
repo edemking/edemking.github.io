@@ -135,8 +135,7 @@ export default function Home() {
   return (
     <>
       <div className="grid grid-cols-12">
-        <div className="col-span-1"></div>
-        <div className="col-span-12 lg:col-span-10">
+        <div className="col-span-12 lg:col-span-12 px-20">
           <div className="banner pt-5 pb-0 h-screen overflow-hidden">
             <div className="grid grid-cols-12 h-full">
               <div className="col-span-12 lg:col-span-5 relative h-full text-center lg:text-left pt-[11vh] lg:pt-[35vh]">
@@ -429,7 +428,7 @@ export default function Home() {
               </div>
             </div>
             <div className="pt-[8em] w-full"></div>
-            <div className="section-name-pill py-2 px-6 mb-8">
+            <div className="section-name-pill py-2 px-6 mb-8 rounded-full">
               <p className="text-lg font-extrabold">About me</p>
             </div>
             <div className="pt-[1em] w-full"></div>
@@ -516,7 +515,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="col-span-1"></div>
         <div className="col-span-12"
           ref={marqueeRef}>
           <AnimatePresence>

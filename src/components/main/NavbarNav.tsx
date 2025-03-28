@@ -28,8 +28,7 @@ const NavbarNav = ({ parsedClass }: { parsedClass: string }) => {
                 transition={{ ease: 'easeInOut', duration: .5 }}
                 className="z-50 fixed w-full transition ease-in-out duration-700">
                 <div className="grid grid-cols-12">
-                  <div className="col-span-1"></div>
-                  <div className="col-span-12 lg:col-span-10 py-8 px-2 lg:px-0">
+                  <div className="col-span-12 lg:col-span-12 py-8 px-2 lg:px-25">
                     <div className="flex flex-row justify-between items-center">
                       <Link href={'/'}>
                         <div className="bg-white rounded-full p-3">
@@ -57,7 +56,6 @@ const NavbarNav = ({ parsedClass }: { parsedClass: string }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-span-1"></div>
                 </div>
               </motion.div>
             </AnimatePresence>

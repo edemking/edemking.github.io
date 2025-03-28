@@ -22,8 +22,8 @@ const ActionButton = ({
     return (
         <Link href={link} target={target} className={`${className} ${keyVal} group`}>
             <button className={`cursor-pointer flex flex-row gap-2 items-center bg-transparent rounded-full transition ease-in-out duration-700`}>
-                <div className='transition ease-in-out duration-700
-                     group-hover:-translate-x-1
+                <div className='transition ease-in-out duration-400
+                     group-hover:translate-x-1
                      group-hover:opacity-0
                      overflow-hidden max-w-max'>
                     <svg className='w-full' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

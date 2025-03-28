@@ -14,8 +14,7 @@ const FooterNav = ({ parsedClass }: { parsedClass: string }) => {
   return (
     <>
       <div className="grid grid-cols-12 my-[2em]">
-        <div className="col-span-1"></div>
-        <div className="col-span-10">
+        <div className="col-span-12 px-5 lg:px-25">
           <AnimatePresence>
             {
               true &&
@@ -26,7 +25,7 @@ const FooterNav = ({ parsedClass }: { parsedClass: string }) => {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.2 }}
                   exit={{ opacity: 0, y: 10 }} className="flex flex-col lg:flex-row gap-10 items-center my-[2em]">
-                  <div className={`${parsedClass} py-2 px-4 bg-[#333030] rounded-full max-w-max w-full grow`}>
+                  <div className={`${parsedClass} py-2 px-4 bg-[#161616] rounded-full max-w-max w-full grow`}>
                     <p className='uppercase flex flex-nowrap text-center lg:text-left'>Don&apos;t Wait, Let&apos;s Create Together!</p>
                   </div>
                   <motion.div
@@ -41,7 +40,7 @@ const FooterNav = ({ parsedClass }: { parsedClass: string }) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.4 }}
-                  exit={{ opacity: 0, y: 10 }} className={`${parsedClass} rounded-2xl bg-[#2C2C2C] py-8 px-10 flex flex-col lg:flex-row justify-between`}>
+                  exit={{ opacity: 0, y: 10 }} className={`${parsedClass} rounded-2xl bg-[#161616] py-3 lg:py-6 px-10 flex flex-col lg:flex-row justify-between`}>
                   <div className='flex flex-col lg:flex-row gap-2 lg:gap-4 items-center'>
                     <ActionButton keyVal={'emailMeBtn'} link='mailto:davidedemofc@gmail.com' name='Shoot Me An Email' target='_blank' className={''} />
                     <div className="h-full bg-white w-[1px]">
@@ -81,7 +80,6 @@ const FooterNav = ({ parsedClass }: { parsedClass: string }) => {
             }
           </AnimatePresence>
         </div>
-        <div className="col-span-1"></div>
       </div>
     </>
   )
