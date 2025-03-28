@@ -1,12 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { BlurIn } from "@/components/animations/BlurIn";
 import localFont from 'next/font/local'
 import SectionTitle from '@/components/main/SectionTitle';
 import SectionParagraph from '@/components/main/SectionParagraph';
 import Image from 'next/image';
-import { AnimatePresence, motion, useInView } from 'framer-motion';
+import { AnimatePresence, motion, useInView, useScroll, useTransform } from 'framer-motion';
 import Technologies from '@/components/main/Technologies';
 
 const recklessNeue = localFont({ src: '../fonts/Reckless-Neue-normal-500-100.otf' })
@@ -31,11 +31,20 @@ const Page = () => {
     const darknessRef = React.useRef(null);
     const isInView = useInView(darknessRef, { once: true });
 
+    const aboutBannerRef = useRef(null);
+
+    const { scrollYProgress } = useScroll({
+        target: aboutBannerRef,
+        offset: ["start start", "end start"]
+    });
+
+    const bannerY = useTransform(scrollYProgress, [0, 1], ["0%", "90%"]);
+
     return (
         <>
             <div className="grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-12 px-6 lg:px-25">
-                    <div className="banner h-screen w-full pt-[10em] lg:pt-0">
+                <div ref={aboutBannerRef} className="col-span-12 lg:col-span-12 px-6 lg:px-25">
+                    <motion.div style={{ y: bannerY }} className="banner h-screen w-full pt-[10em] lg:pt-0">
                         <div className="flex flex-col-reverse lg:flex-row h-full">
                             <div className="col-span-12 lg:col-span-6 h-full w-full flex items-center">
                                 <BlurIn className=''>
@@ -400,9 +409,9 @@ const Page = () => {
                                 </BlurIn>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
-                <div className="col-span-12 lg:px-18">
+                <div className="col-span-12 lg:px-15">
                     <div className="relative group">
                         <div className="relative lg:grayscale group-hover:grayscale-0 transition ease-in-out duration-700">
                             <Image
