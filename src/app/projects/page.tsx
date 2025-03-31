@@ -65,12 +65,12 @@ const Page = () => {
             <div className="grid grid-cols-12">
                 <div className="col-span-12 lg:col-span-12 px-6 lg:px-25">
                     <motion.div className="banner w-full py-[10em] lg:py-[15em]">
-                        <div className="flex flex-col-reverse lg:flex-row h-full">
-                            <div className="col-span-12 lg:col-span-6 h-full w-full flex items-center">
+                        <div className="flex justify-center h-full">
+                            <div className="h-full w-full flex justify-center items-center">
                                 <BlurIn className=''>
                                     {/* <h1 className={`${sectionTitleClass}`}>about me</h1> */}
                                     <SectionTitle className={`${sectionTitleClass}`} content='works' />
-                                    <SectionParagraph className={`text-xl lg:text-2xl font-extrabold`} content='Welcome to my gallery' />
+                                    {/* <SectionParagraph className={`text-xl lg:text-2xl font-extrabold`} content='Welcome to my gallery' /> */}
                                     <SectionParagraph className={`text-xl lg:text-xl font-light`} content='Crafting solutions that resonate with you' />
                                 </BlurIn>
                             </div>
