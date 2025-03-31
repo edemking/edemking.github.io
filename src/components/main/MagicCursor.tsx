@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const MagicCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [content, setContent] = useState("scroll");
+  const [content, setContent] = useState("click me");
 
   useEffect(() => {
     // eslint-disable-next-line
@@ -16,7 +16,7 @@ const MagicCursor = () => {
     const handleMouseOver = (e: MouseEvent) => {
       const targetElement = e.target as HTMLElement;
       if (!targetElement) return;
-      
+
       const targetClassList = targetElement.classList;
       const classMapping = {
         play: "play",
@@ -30,7 +30,7 @@ const MagicCursor = () => {
           return;
         }
       }
-      setContent("scroll");
+      setContent("click me");
     };
 
     document.addEventListener("mousemove", handleMouseMove);
