@@ -496,7 +496,11 @@ export default function Home() {
                     solutions and seamless user experiences
                   </p>
                   <div className="py-3"></div>
-                  <button className="my-card py-1 px-4 flex space-x-2 items-center rounded-full bg-[#3f3f3fb9] text-base">
+                  <a
+                    href="/David-Edem-Ndanu-CV.pdf"
+                    target="_blank"
+                    className="my-card py-1 px-4 flex space-x-2 max-w-max items-center rounded-full bg-[#3f3f3fb9] text-base"
+                  >
                     <svg
                       width="19"
                       height="19"
@@ -510,7 +514,7 @@ export default function Home() {
                       />
                     </svg>
                     <span>Resume</span>
-                  </button>
+                  </a>
                 </BlurIn>
                 <BlurIn className="col-span-12 lg:col-span-6 relative my-card p-5 px-6 bg-[#3f3f3f48]">
                   <p className="uppercase">
